@@ -1,0 +1,95 @@
+﻿@model Froky.Models.USUARIO
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/Menubar.cshtml";
+}
+
+<div class="form-container">
+    <div class=" panel panel-primary">
+        <div class="Cor-Formulario">
+            <div class="panel-heading  ">
+                <br />
+                <h4>Tem certeza que deseja deletar este usuário ?</h4>
+            </div>
+        </div>
+        <div>
+
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CPF)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CPF)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NOME)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NOME)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TIPO_DE_USUARIO)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TIPO_DE_USUARIO)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SEXO)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SEXO)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DATA_DE_NASCIMENTO)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DATA_DE_NASCIMENTO)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TELEFONE)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TELEFONE)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.E_MAIL)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.E_MAIL)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SENHA)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SENHA)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn muda-btn-primary"/> |
+            @Html.ActionLink("Voltar para a lista", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="ID_CATEGORIA" />
+    </Key>
+    <Property Name="ID_CATEGORIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CATEGORIA" Type="nchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="FORNECEDOR">
+    <Key>
+      <PropertyRef Name="ID_FORNECEDOR" />
+    </Key>
+    <Property Name="ID_FORNECEDOR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CNPJ" Type="varchar" MaxLength="50" />
+    <Property Name="RAZAO_SOCIAL" Type="varchar(max)" />
+    <Property Name="TELEFONE_PRIMÁRIO" Type="varchar" MaxLength="50" />
+    <Property Name="TELEFONE_SECUNDÁRIO" Type="varchar" MaxLength="50" />
+    <Property Name="E_MAIL" Type="varchar" MaxLength="250" />
+    <Property Name="NOME_FANTASIA" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="ITEM_COMPRA">
+    <Key>
+      <PropertyRef Name="ID_ITEM_COMPRA" />
+    </Key>
+    <Property Name="ID_ITEM_COMPRA" Type="int" Nullable="false" />
+    <Property Name="FK_PRODUTO" Type="int" />
+    <Property Name="FK_PEDIDO" Type="int" />
+    <Property Name="QUANTIDADE" Type="int" />
+    <Property Name="VALOR_UNIT" Type="real" />
+    <Property Name="VALOR_TOTAL" Type="real" />
+  </EntityType>
+  <EntityType Name="PEDIDO">
+    <Key>
+      <PropertyRef Name="ID_PEDIDO" />
+    </Key>
+    <Property Name="ID_PEDIDO" Type="int" Nullable="false" />
+    <Property Name="DATA_DA_COMPRA" Type="date" />
+    <Property Name="VALOR_TOTAL" Type="real" />
+    <Property Name="STATUS_DO_PEDIDO" Type="nvarchar(max)" />
+    <Property Name="FK_USUARIO" Type="int" />
+  </EntityType>
+  <EntityType Name="PRODUTO">
+    <Key>
+      <PropertyRef Name="ID_PRODUTO" />
+    </Key>
+    <Property Name="ID_PRODUTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOME" Type="nvarchar(max)" />
+    <Property Name="DESCRICAO" Type="varchar(max)" />
+    <Property Name="QUANTIDADE" Type="int" />
+    <Property Name="IMAGEM" Type="nvarchar(max)" />
+    <Property Name="FK_CATEGORIA" Type="int" />
+    <Property Name="FK_FORNECEDOR" Type="int" />
+    <Property Name="PRECO" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="50" />
+    <Property Name="NOME" Type="varchar" MaxLength="250" />
+    <Property Name="TIPO_DE_USUARIO" Type="nvarchar(max)" />
+    <Property Name="SEXO" Type="varchar" MaxLength="50" />
+    <Property Name="TELEFONE" Type="varchar" MaxLength="50" />
+    <Property Name="E_MAIL" Type="varchar" MaxLength="100" />
+    <Property Name="SENHA" Type="varchar" MaxLength="50" />
+    <Property Name="DATA_DE_NASCIMENTO" Type="date" />
+  </EntityType>
+  <Association Name="FK_CATEGORIA">
+    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
+    <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="ID_CATEGORIA" />
+      </Principal>
+      <Dependent Role="PRODUTO">
+        <PropertyRef Name="FK_CATEGORIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FORNECEDOR">
+    <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="0..1" />
+    <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORNECEDOR">
+        <PropertyRef Name="ID_FORNECEDOR" />
+      </Principal>
+      <Dependent Role="PRODUTO">
+        <PropertyRef Name="FK_FORNECEDOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEDIDO_1">
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="0..1" />
+    <End Role="ITEM_COMPRA" Type="Self.ITEM_COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEDIDO">
+        <PropertyRef Name="ID_PEDIDO" />
+      </Principal>
+      <Dependent Role="ITEM_COMPRA">
+        <PropertyRef Name="FK_PEDIDO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUTO_1">
+    <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="0..1" />
+    <End Role="ITEM_COMPRA" Type="Self.ITEM_COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUTO">
+        <PropertyRef Name="ID_PRODUTO" />
+      </Principal>
+      <Dependent Role="ITEM_COMPRA">
+        <PropertyRef Name="FK_PRODUTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_1">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="PEDIDO">
+        <PropertyRef Name="FK_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FORNECEDOR" EntityType="Self.FORNECEDOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ITEM_COMPRA" EntityType="Self.ITEM_COMPRA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUTO" EntityType="Self.PRODUTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CATEGORIA" Association="Self.FK_CATEGORIA">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="PRODUTO" EntitySet="PRODUTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FORNECEDOR" Association="Self.FK_FORNECEDOR">
+      <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+      <End Role="PRODUTO" EntitySet="PRODUTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEDIDO_1" Association="Self.FK_PEDIDO_1">
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+      <End Role="ITEM_COMPRA" EntitySet="ITEM_COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUTO_1" Association="Self.FK_PRODUTO_1">
+      <End Role="PRODUTO" EntitySet="PRODUTO" />
+      <End Role="ITEM_COMPRA" EntitySet="ITEM_COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_1" Association="Self.FK_USUARIO_1">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    @* CSS Formulários *@
+    <link href="~/Content/CSS/Formulários.css" rel="stylesheet" />
+    <link href="~/Content/CSS/Personaliza.css" rel="stylesheet" />
+    <link href="~/Content/CSS/MenubarCSS.css" rel="stylesheet" />
+
+    @*Bootstrap*@
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body>
+
+
+    <nav class="navbar navbar-inverse ">
+        <div class="container-fluid ">
+
+            <ul class="nav navbar-nav">
+                
+                <li>@Html.ActionLink("Inicial", "PaginaInicial", "PaginaInicial")</li>
+                <li>@Html.ActionLink("Novo Produto", "Create", "PRODUTOes")</li>
+                <li>@Html.ActionLink("Produtos", "Index", "PRODUTOes")</li>
+                <li>@Html.ActionLink("Novo Usuário", "Create", "USUARIOs")</li>
+                <li>@Html.ActionLink("Usuários", "Index", "USUARIOs")</li>
+                <li>@Html.ActionLink("Novo Fornecedor", "Create", "FORNECEDORs")</li>
+                <li>@Html.ActionLink("Fornecedores", "Index", "FORNECEDORs")</li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/Scripts/mascaras.js"></script>
+
+    <script src="~/Scripts/validacao_ptbr.js"></script>
+
+</body>
+</html>
+
+
+@*<div class=" menu">
+        <ul>
+            <li>@Html.ActionLink("Inicial", "PaginaInicial", "PaginaInicial")</li>
+            <li>@Html.ActionLink("Novo Produto", "Create", "PRODUTOes")</li>
+            <li>@Html.ActionLink("Produtos", "Index", "PRODUTOes")</li>
+            <li>@Html.ActionLink("Novo Usuário", "Create", "USUARIOs")</li>
+            <li>@Html.ActionLink("Usuários", "Index", "USUARIOs")</li>
+            <li>@Html.ActionLink("Novo Fornecedor", "Create", "FORNECEDORs")</li>
+            <li>@Html.ActionLink("Fornecedores", "Index", "FORNECEDORs")</li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </div>*@

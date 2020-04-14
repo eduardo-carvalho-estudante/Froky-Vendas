@@ -1,0 +1,92 @@
+﻿@model Froky.Models.PRODUTO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Menubar.cshtml";
+}
+
+<div class="form-container">
+
+    <div class="page-header">
+        <h1>Detalhes Do Produto</h1>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="Cor-Formulario">
+            <div class="panel-heading">
+                <br />
+                <h4>Detalhes Do Produto</h4>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.NOME, htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.DisplayFor(model => model.NOME, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.QUANTIDADE, htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.DisplayFor(model => model.QUANTIDADE, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PRECO, htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.DisplayFor(model => model.PRECO, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.CATEGORIA, htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.DisplayFor(model => model.CATEGORIA.CATEGORIA1, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.FORNECEDOR, htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.DisplayFor(model => model.FORNECEDOR.RAZAO_SOCIAL, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(Model => Model.DESCRICAO, htmlAttributes: new { @class = "control-label"})
+                    <br/>
+                    @Html.DisplayTextFor(Model => Model.DESCRICAO)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <input type="button" value="Visualizar Produto" class="btn muda-btn-primary" href="#" data-toggle="modal" data-target="#modalDetails">
+        </div>
+    </div>
+</div>
+                
+
+
+
+@*<p>
+    <a href="#" data-toggle="modal" data-target="#modalDetails">Visualizar</a>
+    @Html.ActionLink("Voltar","Index","PRODUTOes")
+</p>*@
+
+<div id="modalDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 style="text-align:center;">Imagem do produto</h4>
+            </div>
+            @using (Html.BeginForm(new { @class = "form" }))
+            {
+                <div class="modal-body">
+                    <img src="@Url.Content(Model.IMAGEM)" width="400" height="300" style="align-content:center;" />
+                </div>
+                <div class="modal-footer">
+                   
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

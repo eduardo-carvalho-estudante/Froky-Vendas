@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UsuarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CPF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NOME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_DE_USUARIO" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SEXO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DATA_DE_NASCIMENTO" Type="DateTime" Precision="0" />
+    <Property Name="TELEFONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="E_MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SENHA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="UsuarioConnection" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
+  </EntityContainer>
+</Schema>

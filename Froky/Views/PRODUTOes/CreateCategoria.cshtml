@@ -1,0 +1,32 @@
+﻿@model Froky.Models.CATEGORIA
+@{
+    Layout = null;
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+       
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Categoria do produto</h4>
+                    </div>
+                    @using (Html.BeginForm(new { @class = "form" }))
+                    {
+                        <div class="modal-body">
+
+                            @Html.EditorFor(Model => Model.CATEGORIA1)
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Cadastrar" class="btn muda-btn-primary  ">
+                        </div>
+                    }
+                </div>
+            </div>
+       
+}

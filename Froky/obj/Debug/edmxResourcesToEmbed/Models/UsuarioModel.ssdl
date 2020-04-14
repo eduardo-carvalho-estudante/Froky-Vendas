@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UsuarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="50" />
+    <Property Name="NOME" Type="varchar" MaxLength="250" />
+    <Property Name="TIPO_DE_USUARIO" Type="nvarchar(max)" />
+    <Property Name="SEXO" Type="varchar" MaxLength="50" />
+    <Property Name="TELEFONE" Type="varchar" MaxLength="50" />
+    <Property Name="E_MAIL" Type="varchar" MaxLength="100" />
+    <Property Name="SENHA" Type="varchar" MaxLength="50" />
+    <Property Name="DATA_DE_NASCIMENTO" Type="date" />
+  </EntityType>
+  <EntityContainer Name="UsuarioModelStoreContainer">
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

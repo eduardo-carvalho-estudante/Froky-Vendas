@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="ID_CATEGORIA" />
+    </Key>
+    <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATEGORIA1" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="PRODUTO" Relationship="Self.FK_CATEGORIA" FromRole="CATEGORIA" ToRole="PRODUTO" />
+  </EntityType>
+  <EntityType Name="FORNECEDOR">
+    <Key>
+      <PropertyRef Name="ID_FORNECEDOR" />
+    </Key>
+    <Property Name="ID_FORNECEDOR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CNPJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RAZAO_SOCIAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONE_PRIMÁRIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONE_SECUNDÁRIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="E_MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NOME_FANTASIA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUTO" Relationship="Self.FK_FORNECEDOR" FromRole="FORNECEDOR" ToRole="PRODUTO" />
+  </EntityType>
+  <EntityType Name="ITEM_COMPRA">
+    <Key>
+      <PropertyRef Name="ID_ITEM_COMPRA" />
+    </Key>
+    <Property Name="ID_ITEM_COMPRA" Type="Int32" Nullable="false" />
+    <Property Name="FK_PRODUTO" Type="Int32" />
+    <Property Name="FK_PEDIDO" Type="Int32" />
+    <Property Name="QUANTIDADE" Type="Int32" />
+    <Property Name="VALOR_UNIT" Type="Single" />
+    <Property Name="VALOR_TOTAL" Type="Single" />
+    <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_1" FromRole="ITEM_COMPRA" ToRole="PEDIDO" />
+    <NavigationProperty Name="PRODUTO" Relationship="Self.FK_PRODUTO_1" FromRole="ITEM_COMPRA" ToRole="PRODUTO" />
+  </EntityType>
+  <EntityType Name="PEDIDO">
+    <Key>
+      <PropertyRef Name="ID_PEDIDO" />
+    </Key>
+    <Property Name="ID_PEDIDO" Type="Int32" Nullable="false" />
+    <Property Name="DATA_DA_COMPRA" Type="DateTime" Precision="0" />
+    <Property Name="VALOR_TOTAL" Type="Single" />
+    <Property Name="STATUS_DO_PEDIDO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FK_USUARIO" Type="Int32" />
+    <NavigationProperty Name="ITEM_COMPRA" Relationship="Self.FK_PEDIDO_1" FromRole="PEDIDO" ToRole="ITEM_COMPRA" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_1" FromRole="PEDIDO" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="PRODUTO">
+    <Key>
+      <PropertyRef Name="ID_PRODUTO" />
+    </Key>
+    <Property Name="ID_PRODUTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRICAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="QUANTIDADE" Type="Int32" />
+    <Property Name="PRECO" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="IMAGEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FK_CATEGORIA" Type="Int32" />
+    <Property Name="FK_FORNECEDOR" Type="Int32" />
+    <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_CATEGORIA" FromRole="PRODUTO" ToRole="CATEGORIA" />
+    <NavigationProperty Name="FORNECEDOR" Relationship="Self.FK_FORNECEDOR" FromRole="PRODUTO" ToRole="FORNECEDOR" />
+    <NavigationProperty Name="ITEM_COMPRA" Relationship="Self.FK_PRODUTO_1" FromRole="PRODUTO" ToRole="ITEM_COMPRA" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CPF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NOME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_DE_USUARIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SEXO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="E_MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SENHA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DATA_DE_NASCIMENTO" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="PEDIDO" Relationship="Self.FK_USUARIO_1" FromRole="USUARIO" ToRole="PEDIDO" />
+  </EntityType>
+  <Association Name="FK_CATEGORIA">
+    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
+    <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="ID_CATEGORIA" />
+      </Principal>
+      <Dependent Role="PRODUTO">
+        <PropertyRef Name="FK_CATEGORIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FORNECEDOR">
+    <End Role="FORNECEDOR" Type="Self.FORNECEDOR" Multiplicity="0..1" />
+    <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORNECEDOR">
+        <PropertyRef Name="ID_FORNECEDOR" />
+      </Principal>
+      <Dependent Role="PRODUTO">
+        <PropertyRef Name="FK_FORNECEDOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEDIDO_1">
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="0..1" />
+    <End Role="ITEM_COMPRA" Type="Self.ITEM_COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEDIDO">
+        <PropertyRef Name="ID_PEDIDO" />
+      </Principal>
+      <Dependent Role="ITEM_COMPRA">
+        <PropertyRef Name="FK_PEDIDO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUTO_1">
+    <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="0..1" />
+    <End Role="ITEM_COMPRA" Type="Self.ITEM_COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUTO">
+        <PropertyRef Name="ID_PRODUTO" />
+      </Principal>
+      <Dependent Role="ITEM_COMPRA">
+        <PropertyRef Name="FK_PRODUTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_1">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="PEDIDO">
+        <PropertyRef Name="FK_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
+    <EntitySet Name="FORNECEDOR" EntityType="Self.FORNECEDOR" />
+    <EntitySet Name="ITEM_COMPRA" EntityType="Self.ITEM_COMPRA" />
+    <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" />
+    <EntitySet Name="PRODUTO" EntityType="Self.PRODUTO" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <AssociationSet Name="FK_CATEGORIA" Association="Self.FK_CATEGORIA">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="PRODUTO" EntitySet="PRODUTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FORNECEDOR" Association="Self.FK_FORNECEDOR">
+      <End Role="FORNECEDOR" EntitySet="FORNECEDOR" />
+      <End Role="PRODUTO" EntitySet="PRODUTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEDIDO_1" Association="Self.FK_PEDIDO_1">
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+      <End Role="ITEM_COMPRA" EntitySet="ITEM_COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUTO_1" Association="Self.FK_PRODUTO_1">
+      <End Role="PRODUTO" EntitySet="PRODUTO" />
+      <End Role="ITEM_COMPRA" EntitySet="ITEM_COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_1" Association="Self.FK_USUARIO_1">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

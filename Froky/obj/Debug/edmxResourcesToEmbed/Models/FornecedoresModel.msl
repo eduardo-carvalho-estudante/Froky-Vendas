@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FornecedoresModelStoreContainer" CdmEntityContainer="FornecedorModel">
+    <EntitySetMapping Name="FORNECEDOR">
+      <EntityTypeMapping TypeName="FornecedoresModel.FORNECEDOR">
+        <MappingFragment StoreEntitySet="FORNECEDOR">
+          <ScalarProperty Name="ID_FORNECEDOR" ColumnName="ID_FORNECEDOR" />
+          <ScalarProperty Name="CNPJ" ColumnName="CNPJ" />
+          <ScalarProperty Name="RAZAO_SOCIAL" ColumnName="RAZAO_SOCIAL" />
+          <ScalarProperty Name="TELEFONE_PRIMÁRIO" ColumnName="TELEFONE_PRIMÁRIO" />
+          <ScalarProperty Name="TELEFONE_SECUNDÁRIO" ColumnName="TELEFONE_SECUNDÁRIO" />
+          <ScalarProperty Name="E_MAIL" ColumnName="E_MAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

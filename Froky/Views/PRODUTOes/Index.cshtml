@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Froky.Models.PRODUTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Menubar.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="form-container">
+
+
+    <div class="panel panel-primary">
+        <div class=" Cor-Formulario">
+            <div class="panel-heading">
+                <br />
+                <h4 > Produtos Disponiveis Em Estoque</h4>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NOME)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QUANTIDADE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PRECO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CATEGORIA)
+                    </th>
+                    <th></th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QUANTIDADE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRECO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CATEGORIA.CATEGORIA1)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.ID_PRODUTO }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.ID_PRODUTO }) |
+                            @Html.ActionLink("Deletar", "Delete", new { id = item.ID_PRODUTO }) |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

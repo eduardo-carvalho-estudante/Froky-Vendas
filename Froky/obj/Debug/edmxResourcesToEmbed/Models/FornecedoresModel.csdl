@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FornecedoresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FORNECEDOR">
+    <Key>
+      <PropertyRef Name="ID_FORNECEDOR" />
+    </Key>
+    <Property Name="ID_FORNECEDOR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CNPJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RAZAO_SOCIAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONE_PRIMÁRIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONE_SECUNDÁRIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="E_MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="FornecedorModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FORNECEDOR" EntityType="Self.FORNECEDOR" />
+  </EntityContainer>
+</Schema>

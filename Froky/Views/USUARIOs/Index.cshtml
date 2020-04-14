@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Froky.Models.USUARIO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Menubar.cshtml";
+}
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="form-container">
+    <div class="panel panel-primary">
+        <div class=" Cor-Formulario">
+            <div class="panel-heading">
+                <br />
+                <h4> Usuários Cadastrados No Sistema</h4>
+            </div>
+        </div>
+    
+
+
+   
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NOME)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CPF)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TIPO_DE_USUARIO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.E_MAIL)
+                    </th>
+                    <th></th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CPF)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TIPO_DE_USUARIO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.E_MAIL)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.ID_USUARIO }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.ID_USUARIO }) |
+                            @Html.ActionLink("Deletar", "Delete", new { id = item.ID_USUARIO }) |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@*<title>Usuários</title>
+<br />
+<h3 style="text-align:center;">Usuários Cadastrados</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.CPF)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.NOME)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.TIPO_DE_USUARIO)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.SEXO)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.DATA_DE_NASCIMENTO)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.TELEFONE)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.E_MAIL)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.SENHA)
+            </th>
+
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIPO_DE_USUARIO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SEXO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DATA_DE_NASCIMENTO, new { htmlAttributes = new { placeholder = "__/__/____", data_tipo = "data"} })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TELEFONE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.E_MAIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SENHA)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_USUARIO }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ID_USUARIO }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.ID_USUARIO })
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+@*<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+<script src="~/Scripts/jquery.mask.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="~/Scripts/mascaras.js"></script>
+
+<script src="~/Scripts/validacao_ptbr.js"></script>*@

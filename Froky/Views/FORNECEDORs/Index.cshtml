@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Froky.Models.FORNECEDOR>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Menubar.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CNPJ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RAZAO_SOCIAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TELEFONE_PRIMÁRIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TELEFONE_SECUNDÁRIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.E_MAIL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CNPJ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RAZAO_SOCIAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TELEFONE_PRIMÁRIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TELEFONE_SECUNDÁRIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.E_MAIL)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_FORNECEDOR }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_FORNECEDOR }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_FORNECEDOR })
+        </td>
+    </tr>
+}
+
+</table>
